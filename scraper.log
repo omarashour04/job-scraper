@@ -1,0 +1,159 @@
+2026-04-19 02:35:51,049 | INFO    | main | ============================================================
+2026-04-19 02:35:51,049 | INFO    | main | Job Scraper started at 2026-04-19 02:35:51
+2026-04-19 02:35:51,050 | INFO    | main | ============================================================
+2026-04-19 02:35:51,074 | INFO    | main | ── Running scraper: LinkedIn ──
+2026-04-19 02:35:51,074 | INFO    | scrapers.linkedin | LinkedIn | query='Machine Learning Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Machine+Learning+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:35:52,201 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:35:57,579 | INFO    | scrapers.linkedin | LinkedIn | query='Machine Learning Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Machine+Learning+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:35:58,201 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:02,085 | INFO    | scrapers.linkedin | LinkedIn | query='Computer Vision Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Computer+Vision+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:02,650 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:07,265 | INFO    | scrapers.linkedin | LinkedIn | query='Computer Vision Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Computer+Vision+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:07,900 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:11,602 | INFO    | scrapers.linkedin | LinkedIn | query='Junior AI Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Junior+AI+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:12,075 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:15,941 | INFO    | scrapers.linkedin | LinkedIn | query='Junior AI Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Junior+AI+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:16,510 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:21,781 | INFO    | scrapers.linkedin | LinkedIn | query='Data Scientist' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data+Scientist&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:22,300 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:26,952 | INFO    | scrapers.linkedin | LinkedIn | query='Data Scientist' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data+Scientist&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:27,631 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:33,013 | INFO    | scrapers.linkedin | LinkedIn | query='Deep Learning Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Deep+Learning+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:33,482 | INFO    | scrapers.linkedin |   → 4 cards found
+2026-04-19 02:36:37,838 | INFO    | scrapers.linkedin | LinkedIn | query='Deep Learning Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Deep+Learning+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:38,324 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:43,031 | INFO    | scrapers.linkedin | LinkedIn | query='NLP Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=NLP+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:43,475 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:48,593 | INFO    | scrapers.linkedin | LinkedIn | query='NLP Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=NLP+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:49,119 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:52,765 | INFO    | scrapers.linkedin | LinkedIn | query='AI Research Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=AI+Research+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:36:53,253 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:36:57,635 | INFO    | scrapers.linkedin | LinkedIn | query='AI Research Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=AI+Research+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:36:58,216 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:02,864 | INFO    | scrapers.linkedin | LinkedIn | query='MLOps Engineer' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=MLOps+Engineer&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:03,323 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:08,376 | INFO    | scrapers.linkedin | LinkedIn | query='MLOps Engineer' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=MLOps+Engineer&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:08,865 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:14,173 | INFO    | scrapers.linkedin | LinkedIn | query='Python Developer AI' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python+Developer+AI&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:14,686 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:19,893 | INFO    | scrapers.linkedin | LinkedIn | query='Python Developer AI' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Python+Developer+AI&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:20,602 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:25,495 | INFO    | scrapers.linkedin | LinkedIn | query='ML internship' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=ML+internship&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:25,972 | INFO    | scrapers.linkedin |   → 6 cards found
+2026-04-19 02:37:30,940 | INFO    | scrapers.linkedin | LinkedIn | query='ML internship' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=ML+internship&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:31,480 | INFO    | scrapers.linkedin |   → 7 cards found
+2026-04-19 02:37:35,499 | INFO    | scrapers.linkedin | LinkedIn | query='AI internship' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=AI+internship&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:35,970 | INFO    | scrapers.linkedin |   → 7 cards found
+2026-04-19 02:37:39,905 | INFO    | scrapers.linkedin | LinkedIn | query='AI internship' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=AI+internship&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:40,399 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:37:43,912 | INFO    | scrapers.linkedin | LinkedIn | query='Data Science internship' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data+Science+internship&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:44,319 | INFO    | scrapers.linkedin |   → 6 cards found
+2026-04-19 02:37:49,635 | INFO    | scrapers.linkedin | LinkedIn | query='Data Science internship' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Data+Science+internship&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:50,160 | INFO    | scrapers.linkedin |   → 9 cards found
+2026-04-19 02:37:54,910 | INFO    | scrapers.linkedin | LinkedIn | query='Computer Vision internship' | target='Egypt' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Computer+Vision+internship&start=0&count=10&sortBy=DD&geoId=106155005
+2026-04-19 02:37:55,317 | INFO    | scrapers.linkedin |   → 1 cards found
+2026-04-19 02:37:58,976 | INFO    | scrapers.linkedin | LinkedIn | query='Computer Vision internship' | target='Remote Abroad' | https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Computer+Vision+internship&start=0&count=10&sortBy=DD&f_WT=2
+2026-04-19 02:37:59,475 | INFO    | scrapers.linkedin |   → 10 cards found
+2026-04-19 02:38:04,347 | INFO    | main | LinkedIn returned 230 raw listings
+2026-04-19 02:38:04,349 | INFO    | main | ── Running scraper: Wuzzuf ──
+2026-04-19 02:38:04,350 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Machine Learning Engineer' | https://wuzzuf.net/search/jobs/?q=Machine+Learning+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:06,547 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:09,050 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Computer Vision Engineer' | https://wuzzuf.net/search/jobs/?q=Computer+Vision+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:10,138 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:12,639 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Junior AI Engineer' | https://wuzzuf.net/search/jobs/?q=Junior+AI+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:13,587 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:16,090 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Data Scientist' | https://wuzzuf.net/search/jobs/?q=Data+Scientist&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:16,986 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:19,487 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Deep Learning Engineer' | https://wuzzuf.net/search/jobs/?q=Deep+Learning+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:20,494 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:22,996 | INFO    | scrapers.wuzzuf | Wuzzuf | query='NLP Engineer' | https://wuzzuf.net/search/jobs/?q=NLP+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:23,826 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:26,328 | INFO    | scrapers.wuzzuf | Wuzzuf | query='AI Research Engineer' | https://wuzzuf.net/search/jobs/?q=AI+Research+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:27,370 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:29,871 | INFO    | scrapers.wuzzuf | Wuzzuf | query='MLOps Engineer' | https://wuzzuf.net/search/jobs/?q=MLOps+Engineer&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:30,566 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:33,068 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Python Developer AI' | https://wuzzuf.net/search/jobs/?q=Python+Developer+AI&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:34,165 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:36,667 | INFO    | scrapers.wuzzuf | Wuzzuf | query='ML internship' | https://wuzzuf.net/search/jobs/?q=ML+internship&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:37,041 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:39,547 | INFO    | scrapers.wuzzuf | Wuzzuf | query='AI internship' | https://wuzzuf.net/search/jobs/?q=AI+internship&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:40,266 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:42,768 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Data Science internship' | https://wuzzuf.net/search/jobs/?q=Data+Science+internship&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:43,529 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:46,031 | INFO    | scrapers.wuzzuf | Wuzzuf | query='Computer Vision internship' | https://wuzzuf.net/search/jobs/?q=Computer+Vision+internship&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+2026-04-19 02:38:46,770 | INFO    | scrapers.wuzzuf |   → 0 cards found
+2026-04-19 02:38:49,276 | INFO    | main | Wuzzuf returned 0 raw listings
+2026-04-19 02:38:49,277 | INFO    | main | ── Running scraper: Bayt ──
+2026-04-19 02:38:49,278 | INFO    | scrapers.bayt | Bayt | query='Machine Learning Engineer' | https://www.bayt.com/en/egypt/jobs/machine-learning-engineer-jobs/
+2026-04-19 02:38:50,612 | WARNING | scrapers.bayt | Bayt request failed for 'Machine Learning Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/machine-learning-engineer-jobs/
+2026-04-19 02:38:53,119 | INFO    | scrapers.bayt | Bayt | query='Computer Vision Engineer' | https://www.bayt.com/en/egypt/jobs/computer-vision-engineer-jobs/
+2026-04-19 02:38:54,581 | WARNING | scrapers.bayt | Bayt request failed for 'Computer Vision Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/computer-vision-engineer-jobs/
+2026-04-19 02:38:57,088 | INFO    | scrapers.bayt | Bayt | query='Junior AI Engineer' | https://www.bayt.com/en/egypt/jobs/junior-ai-engineer-jobs/
+2026-04-19 02:38:58,543 | WARNING | scrapers.bayt | Bayt request failed for 'Junior AI Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/junior-ai-engineer-jobs/
+2026-04-19 02:39:01,045 | INFO    | scrapers.bayt | Bayt | query='Data Scientist' | https://www.bayt.com/en/egypt/jobs/data-scientist-jobs/
+2026-04-19 02:39:02,521 | WARNING | scrapers.bayt | Bayt request failed for 'Data Scientist': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/data-scientist-jobs/
+2026-04-19 02:39:05,023 | INFO    | scrapers.bayt | Bayt | query='Deep Learning Engineer' | https://www.bayt.com/en/egypt/jobs/deep-learning-engineer-jobs/
+2026-04-19 02:39:06,493 | WARNING | scrapers.bayt | Bayt request failed for 'Deep Learning Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/deep-learning-engineer-jobs/
+2026-04-19 02:39:08,995 | INFO    | scrapers.bayt | Bayt | query='NLP Engineer' | https://www.bayt.com/en/egypt/jobs/nlp-engineer-jobs/
+2026-04-19 02:39:10,382 | WARNING | scrapers.bayt | Bayt request failed for 'NLP Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/nlp-engineer-jobs/
+2026-04-19 02:39:12,883 | INFO    | scrapers.bayt | Bayt | query='AI Research Engineer' | https://www.bayt.com/en/egypt/jobs/ai-research-engineer-jobs/
+2026-04-19 02:39:14,294 | WARNING | scrapers.bayt | Bayt request failed for 'AI Research Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/ai-research-engineer-jobs/
+2026-04-19 02:39:16,796 | INFO    | scrapers.bayt | Bayt | query='MLOps Engineer' | https://www.bayt.com/en/egypt/jobs/mlops-engineer-jobs/
+2026-04-19 02:39:18,250 | WARNING | scrapers.bayt | Bayt request failed for 'MLOps Engineer': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/mlops-engineer-jobs/
+2026-04-19 02:39:20,753 | INFO    | scrapers.bayt | Bayt | query='Python Developer AI' | https://www.bayt.com/en/egypt/jobs/python-developer-ai-jobs/
+2026-04-19 02:39:22,210 | WARNING | scrapers.bayt | Bayt request failed for 'Python Developer AI': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/python-developer-ai-jobs/
+2026-04-19 02:39:24,712 | INFO    | scrapers.bayt | Bayt | query='ML internship' | https://www.bayt.com/en/egypt/jobs/ml-internship-jobs/
+2026-04-19 02:39:26,162 | WARNING | scrapers.bayt | Bayt request failed for 'ML internship': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/ml-internship-jobs/
+2026-04-19 02:39:28,663 | INFO    | scrapers.bayt | Bayt | query='AI internship' | https://www.bayt.com/en/egypt/jobs/ai-internship-jobs/
+2026-04-19 02:39:30,033 | WARNING | scrapers.bayt | Bayt request failed for 'AI internship': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/ai-internship-jobs/
+2026-04-19 02:39:32,534 | INFO    | scrapers.bayt | Bayt | query='Data Science internship' | https://www.bayt.com/en/egypt/jobs/data-science-internship-jobs/
+2026-04-19 02:39:33,923 | WARNING | scrapers.bayt | Bayt request failed for 'Data Science internship': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/data-science-internship-jobs/
+2026-04-19 02:39:36,425 | INFO    | scrapers.bayt | Bayt | query='Computer Vision internship' | https://www.bayt.com/en/egypt/jobs/computer-vision-internship-jobs/
+2026-04-19 02:39:37,817 | WARNING | scrapers.bayt | Bayt request failed for 'Computer Vision internship': 403 Client Error: Forbidden for url: https://www.bayt.com/en/egypt/jobs/computer-vision-internship-jobs/
+2026-04-19 02:39:40,322 | INFO    | main | Bayt returned 0 raw listings
+2026-04-19 02:39:40,323 | INFO    | main | ── Running scraper: Remote Abroad ──
+2026-04-19 02:39:40,323 | INFO    | scrapers.remote_abroad | RemoteOK | fetching public API
+2026-04-19 02:39:42,780 | INFO    | scrapers.remote_abroad |   → 29 relevant listings after keyword filter
+2026-04-19 02:39:42,783 | INFO    | scrapers.remote_abroad | WWR | feed='https://weworkremotely.com/categories/2-programming/jobs.rss'
+2026-04-19 02:39:44,273 | WARNING | scrapers.remote_abroad | WWR feed 'https://weworkremotely.com/categories/2-programming/jobs.rss' failed: 403 Client Error: Forbidden for url: https://weworkremotely.com/categories/2-programming/jobs.rss
+2026-04-19 02:39:46,774 | INFO    | scrapers.remote_abroad | WWR | feed='https://weworkremotely.com/categories/7-data-science/jobs.rss'
+2026-04-19 02:39:48,150 | WARNING | scrapers.remote_abroad | WWR feed 'https://weworkremotely.com/categories/7-data-science/jobs.rss' failed: 403 Client Error: Forbidden for url: https://weworkremotely.com/categories/7-data-science/jobs.rss
+2026-04-19 02:39:50,651 | INFO    | scrapers.remote_abroad |   → 0 relevant WWR listings
+2026-04-19 02:39:50,651 | INFO    | scrapers.remote_abroad | Himalayas | query='machine learning'
+2026-04-19 02:39:52,190 | WARNING | scrapers.remote_abroad | Himalayas query 'machine learning' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=machine%20learning&limit=30
+2026-04-19 02:39:54,691 | INFO    | scrapers.remote_abroad | Himalayas | query='computer vision'
+2026-04-19 02:39:56,130 | WARNING | scrapers.remote_abroad | Himalayas query 'computer vision' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=computer%20vision&limit=30
+2026-04-19 02:39:58,633 | INFO    | scrapers.remote_abroad | Himalayas | query='deep learning'
+2026-04-19 02:40:00,130 | WARNING | scrapers.remote_abroad | Himalayas query 'deep learning' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=deep%20learning&limit=30
+2026-04-19 02:40:02,632 | INFO    | scrapers.remote_abroad | Himalayas | query='nlp'
+2026-04-19 02:40:04,147 | WARNING | scrapers.remote_abroad | Himalayas query 'nlp' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=nlp&limit=30
+2026-04-19 02:40:06,648 | INFO    | scrapers.remote_abroad | Himalayas | query='data scientist'
+2026-04-19 02:40:08,215 | WARNING | scrapers.remote_abroad | Himalayas query 'data scientist' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=data%20scientist&limit=30
+2026-04-19 02:40:10,716 | INFO    | scrapers.remote_abroad | Himalayas | query='ai engineer'
+2026-04-19 02:40:12,067 | WARNING | scrapers.remote_abroad | Himalayas query 'ai engineer' failed: 403 Client Error: Forbidden for url: https://himalayas.app/jobs/api?q=ai%20engineer&limit=30
+2026-04-19 02:40:14,570 | INFO    | scrapers.remote_abroad |   → 0 relevant Himalayas listings
+2026-04-19 02:40:14,573 | INFO    | scrapers.remote_abroad | Jobicy | tag='machine-learning'
+2026-04-19 02:40:18,763 | INFO    | scrapers.remote_abroad | Jobicy | tag='data-science'
+2026-04-19 02:40:22,725 | INFO    | scrapers.remote_abroad | Jobicy | tag='python'
+2026-04-19 02:40:26,424 | INFO    | scrapers.remote_abroad | Jobicy | tag='computer-vision'
+2026-04-19 02:40:29,988 | INFO    | scrapers.remote_abroad | Jobicy | tag='nlp'
+2026-04-19 02:40:33,876 | INFO    | scrapers.remote_abroad |   → 10 relevant Jobicy listings
+2026-04-19 02:40:33,880 | INFO    | main | Remote Abroad returned 39 raw listings
+2026-04-19 02:40:33,880 | INFO    | main | Total raw listings across all platforms: 269
+2026-04-19 02:40:34,872 | INFO    | main | After scoring (≥ 3): 98 listings qualify
+2026-04-19 02:40:34,935 | INFO    | deduplicator | Deduplicator | input=98  new=70  already_seen=28
+2026-04-19 02:40:34,935 | INFO    | main | After deduplication: 70 truly new listings
+2026-04-19 02:40:35,579 | INFO    | excel_writer | Excel | 70 new rows written → C:\experiment\auto job search\job_scraper\job_tracker.xlsx
+2026-04-19 02:40:35,580 | INFO    | main | ============================================================
+2026-04-19 02:40:35,580 | INFO    | main | SCRAPE COMPLETE — 2026-04-19 02:40
+2026-04-19 02:40:35,580 | INFO    | main | Raw: 269 | Qualifying: 98 | New: 70 | Written: 70
+2026-04-19 02:40:35,583 | INFO    | main | Priority — High: 2 | Medium: 6 | Low: 62
+2026-04-19 02:40:35,583 | INFO    | main | Elapsed: 284s
+2026-04-19 02:40:35,583 | INFO    | main | ── Top picks ──
+2026-04-19 02:40:35,583 | INFO    | main |   1. [11] Freelance Data Science Engineer (Python & SQL) @ Mindrift  https://jobicy.com/jobs/141474-freelance-data-science-engineer-python-sql-2
+2026-04-19 02:40:35,583 | INFO    | main |   2. [11] Data Scientist (Python & SQL) – Freelance AI Trainer @ Mindrift  https://jobicy.com/jobs/141473-data-scientist-python-sql-freelance-ai-trainer
+2026-04-19 02:40:35,583 | INFO    | main |   3. [7] Computer Vision Engineer (PyTorch/TensorRT) @ Flatgigs  https://eg.linkedin.com/jobs/view/computer-vision-engineer-pytorch-tensorrt-at-flatgigs-4362963235
+2026-04-19 02:40:35,583 | INFO    | main |   4. [5] ML Engineer - Computer Vision (Remote Position) @ Entefy  https://www.linkedin.com/jobs/view/ml-engineer-computer-vision-remote-position-at-entefy-4339064864
+2026-04-19 02:40:35,587 | INFO    | main |   5. [5] Deep Learning Engineer @ 5V Tech  https://www.linkedin.com/jobs/view/deep-learning-engineer-at-5v-tech-4392450594
+2026-04-19 02:40:35,587 | INFO    | main | ============================================================
+2026-04-19 02:40:37,143 | INFO    | notifier | Notification sent via win10toast

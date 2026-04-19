@@ -1,0 +1,15 @@
+# Job Scraper — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+openpyxl>=3.1.0
+plyer>=2.1.0
+
+# Windows-only (for native toast notifications):
+# win10toast>=0.9
+
+# Optional — for LinkedIn browser-based fallback if IP gets blocked:
+# playwright>=1.43.0
+# After installing playwright run: python -m playwright install chromium
