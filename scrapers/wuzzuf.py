@@ -1,11 +1,15 @@
 """
 scrapers/wuzzuf.py — Scrapes Wuzzuf.net for job listings.
 
-Uses requests + BeautifulSoup. Wuzzuf is scraper-friendly on its public
-search pages (no mandatory login for reading job cards).
+URL strategy:
+  Search endpoint:  https://wuzzuf.net/search/jobs/?q={query}&filters[country_abbreviations][0]=EG
+  Job detail URLs:  https://wuzzuf.net/jobs/p/<slug>-<id>
 
-Search URL pattern:
-    https://wuzzuf.net/search/jobs/?q={query}&a=navbg%7CTypehead&filters[country_abbreviations][0]=EG
+Root cause of wrong links:
+  The original code picked up the first <a> in the card which is sometimes
+  a company link or a category link, not the job title link.
+  Fix: we explicitly filter for anchors whose href contains /jobs/p/ and
+  excludes /company/, then derive both URL and title from that same element.
 """
 
 import time
@@ -15,11 +19,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 
-from config import (
-    SEARCH_QUERIES,
-    REQUEST_DELAY_SEC,
-    MAX_RESULTS_PER_QUERY,
-)
+from config import SEARCH_QUERIES, REQUEST_DELAY_SEC, MAX_RESULTS_PER_QUERY
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,8 @@ HEADERS = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
-BASE_URL = "https://wuzzuf.net/search/jobs/"
+BASE_URL    = "https://wuzzuf.net/search/jobs/"
+JOB_URL_RE  = re.compile(r"^/jobs/p/[^?#]+")   # matches /jobs/p/<slug> — no company or category
 
 
 def _build_url(query: str) -> str:
@@ -45,69 +46,75 @@ def _build_url(query: str) -> str:
 
 
 def _detect_work_type(text: str) -> str:
-    """Infer work arrangement from any available text."""
     t = text.lower()
     if "remote" in t:
-        if "hybrid" in t:
-            return "Hybrid"
-        return "Remote"
+        return "Hybrid" if "hybrid" in t else "Remote"
     if "hybrid" in t:
         return "Hybrid"
     return "On-site"
 
 
-def _parse_cards(soup: BeautifulSoup, query: str) -> list[dict]:
-    """Parse job cards from a Wuzzuf search results page."""
-    jobs = []
-    # Wuzzuf wraps each job in an <article> with data-jobid or class css-1gatmva
-    cards = soup.find_all("article", class_=re.compile(r"css-"))[:MAX_RESULTS_PER_QUERY]
+def _get_job_anchor(card):
+    """
+    Return the <a> tag that links to the job detail page, or None.
+    Wuzzuf job links: /jobs/p/<slug>-<numeric-id>
+    We reject anything containing /company/, /search/, or /categories/.
+    """
+    for a in card.find_all("a", href=True):
+        href = a["href"]
+        if (
+            href.startswith("/jobs/p/")
+            and "/company/" not in href
+            and "/search/" not in href
+            and "/categories/" not in href
+        ):
+            return a
+    return None
 
+
+def _parse_cards(soup: BeautifulSoup, query: str) -> list[dict]:
+    jobs = []
+    cards = soup.find_all("article", class_=re.compile(r"css-"))[:MAX_RESULTS_PER_QUERY]
     if not cards:
-        # Fallback: look for any article tags
         cards = soup.find_all("article")[:MAX_RESULTS_PER_QUERY]
 
     for card in cards:
         try:
-            # Title
-            title_tag = card.find("h2") or card.find("h3")
-            title = title_tag.get_text(strip=True) if title_tag else ""
+            job_anchor = _get_job_anchor(card)
+            if not job_anchor:
+                continue
+
+            # URL — strip tracking params, build absolute
+            raw_href = job_anchor["href"].split("?")[0].split("#")[0]
+            url = "https://wuzzuf.net" + raw_href if not raw_href.startswith("http") else raw_href
+
+            # Title — text of that exact anchor
+            title = job_anchor.get_text(strip=True)
             if not title:
                 continue
 
-            # URL
-            link_tag = title_tag.find("a") if title_tag else card.find("a")
-            url = ""
-            if link_tag and link_tag.get("href"):
-                href = link_tag["href"]
-                url = href if href.startswith("http") else "https://wuzzuf.net" + href
-
-            # Company
-            company_tag = card.find("a", class_=re.compile(r"css-.*", re.I))
+            # Company — specifically the /company/ anchor
             company = ""
-            for a in card.find_all("a"):
-                href = a.get("href", "")
-                if "/company/" in href or "/jobs/company/" in href:
+            for a in card.find_all("a", href=True):
+                if "/company/" in a["href"]:
                     company = a.get_text(strip=True)
                     break
 
             # Location
             location = ""
-            loc_tags = card.find_all("span", class_=re.compile(r"css-"))
-            for span in loc_tags:
+            for span in card.find_all("span", class_=re.compile(r"css-")):
                 txt = span.get_text(strip=True)
-                if any(c in txt for c in ["Egypt", "Cairo", "Alexandria", "Remote", "،"]):
+                if any(c in txt for c in ["Egypt", "Cairo", "Alexandria", "Remote", "Giza", "،"]):
                     location = txt
                     break
 
-            # Work type & tags
             tags_text = card.get_text(" ", strip=True)
             work_type = _detect_work_type(tags_text + " " + location)
 
-            # Date posted (Wuzzuf shows relative: "2 days ago")
             date_posted = ""
             for span in card.find_all("span"):
                 txt = span.get_text(strip=True).lower()
-                if "ago" in txt or "today" in txt or "yesterday" in txt:
+                if any(w in txt for w in ["ago", "today", "yesterday", "hour", "day", "week"]):
                     date_posted = span.get_text(strip=True)
                     break
 
@@ -118,7 +125,7 @@ def _parse_cards(soup: BeautifulSoup, query: str) -> list[dict]:
                 "work_type":   work_type,
                 "date_posted": date_posted,
                 "url":         url,
-                "description": tags_text,  # card text used for scoring
+                "description": tags_text,
                 "source":      "Wuzzuf",
                 "query":       query,
             })
@@ -131,7 +138,6 @@ def _parse_cards(soup: BeautifulSoup, query: str) -> list[dict]:
 
 
 def scrape_wuzzuf() -> list[dict]:
-    """Run all queries against Wuzzuf and return combined results."""
     all_jobs: list[dict] = []
     session = requests.Session()
     session.headers.update(HEADERS)
@@ -148,7 +154,6 @@ def scrape_wuzzuf() -> list[dict]:
             all_jobs.extend(jobs)
         except Exception as exc:
             logger.warning("Wuzzuf request failed for '%s': %s", query, exc)
-
         time.sleep(REQUEST_DELAY_SEC)
 
     return all_jobs
