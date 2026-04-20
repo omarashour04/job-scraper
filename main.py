@@ -1,31 +1,23 @@
 """
 main.py — Orchestrates the full job search pipeline.
 
-Pipeline:
-  1. Run scrapers (LinkedIn skipped in --quick mode — it blocks aggressively)
-  2. Score every listing
-  3. Deduplicate against seen_jobs.json
-  4. Append qualifying listings to job_tracker.xlsx
-  5. Send desktop notification
-
-Usage:
-    python main.py              — full run including LinkedIn
-    python main.py --quick      — Wuzzuf + Bayt + Remote APIs (no LinkedIn)
-    python main.py --platform wuzzuf
-    python main.py --platform bayt
-    python main.py --platform linkedin
-    python main.py --platform "remote abroad"
+Key features:
+  - Incremental saving: writes to Excel after each scraper finishes
+    so Ctrl+C never loses already-scraped data
+  - Auto-opens Excel after run so you see results immediately
+  - --quick skips LinkedIn (rate-limits aggressively)
 """
 
 import argparse
 import logging
-import sys
 import os
+import subprocess
+import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from config import LOG_FILE, MIN_SCORE, NOTIFICATION_TITLE, NOTIFICATION_TIMEOUT
+from config import LOG_FILE, MIN_SCORE, NOTIFICATION_TITLE, NOTIFICATION_TIMEOUT, EXCEL_FILE
 from scorer import score_job, extract_key_requirements, priority_label
 from deduplicator import filter_new
 from excel_writer import append_jobs
@@ -59,7 +51,6 @@ def _get_scrapers(platform: str | None, quick: bool) -> list[tuple[str, callable
         ("Remote Abroad", scrape_remote_abroad),
     ]
 
-    # --quick skips LinkedIn entirely — it blocks the guest API aggressively
     quick_scrapers = [
         ("Wuzzuf",        scrape_wuzzuf),
         ("Bayt",          scrape_bayt),
@@ -82,80 +73,87 @@ def _get_scrapers(platform: str | None, quick: bool) -> list[tuple[str, callable
     return all_scrapers
 
 
-def run(platform: str | None = None, quick: bool = False) -> dict:
+def _process_and_save(raw_jobs: list[dict], source_name: str) -> tuple[int, int]:
+    """Score, deduplicate, write. Returns (qualifying_count, written_count)."""
+    if not raw_jobs:
+        return 0, 0
+
+    for job in raw_jobs:
+        job["score"]            = score_job(job)
+        job["key_requirements"] = extract_key_requirements(job.get("description", ""))
+
+    qualifying = [j for j in raw_jobs if j["score"] >= MIN_SCORE]
+    logger.info("%s | qualifying: %d/%d", source_name, len(qualifying), len(raw_jobs))
+
+    new_jobs = filter_new(qualifying)
+    logger.info("%s | new after dedup: %d", source_name, len(new_jobs))
+
+    written = append_jobs(new_jobs)
+    logger.info("%s | written to Excel: %d ✓", source_name, written)
+
+    return len(qualifying), written
+
+
+def _open_excel() -> None:
+    """Open job_tracker.xlsx in the default application (Excel on Windows)."""
+    if not os.path.exists(EXCEL_FILE):
+        return
+    try:
+        if sys.platform == "win32":
+            os.startfile(EXCEL_FILE)
+        elif sys.platform == "darwin":
+            subprocess.run(["open", EXCEL_FILE], check=False)
+        else:
+            subprocess.run(["xdg-open", EXCEL_FILE], check=False)
+        logger.info("Opened job_tracker.xlsx")
+    except Exception as exc:
+        logger.debug("Could not auto-open Excel: %s", exc)
+
+
+def run(platform: str | None = None, quick: bool = False, no_open: bool = False) -> dict:
     start_time = datetime.now()
     logger.info("=" * 60)
     logger.info("Job Scraper started at %s", start_time.strftime("%Y-%m-%d %H:%M:%S"))
     logger.info("=" * 60)
 
-    # ── Step 1: Scrape ────────────────────────────────────────────────────────
-    scrapers   = _get_scrapers(platform, quick)
-    raw_jobs: list[dict] = []
+    scrapers      = _get_scrapers(platform, quick)
+    total_raw     = 0
+    total_written = 0
 
     for name, scraper_fn in scrapers:
         logger.info("── Running scraper: %s ──", name)
         try:
             results = scraper_fn()
             logger.info("%s returned %d raw listings", name, len(results))
-            raw_jobs.extend(results)
+            total_raw += len(results)
+            _, written = _process_and_save(results, name)
+            total_written += written
+        except KeyboardInterrupt:
+            logger.warning("Interrupted during %s — data already saved up to this point", name)
+            break
         except Exception as exc:
             logger.error("Scraper '%s' crashed: %s", name, exc, exc_info=True)
 
-    logger.info("Total raw listings: %d", len(raw_jobs))
-
-    # ── Step 2: Score ─────────────────────────────────────────────────────────
-    for job in raw_jobs:
-        job["score"]            = score_job(job)
-        job["key_requirements"] = extract_key_requirements(job.get("description", ""))
-
-    qualifying = [j for j in raw_jobs if j["score"] >= MIN_SCORE]
-    logger.info("After scoring (≥%d): %d listings qualify", MIN_SCORE, len(qualifying))
-
-    # ── Step 3: Deduplicate ───────────────────────────────────────────────────
-    new_jobs = filter_new(qualifying)
-    logger.info("After deduplication: %d new listings", len(new_jobs))
-
-    # ── Step 4: Write to Excel ────────────────────────────────────────────────
-    written = append_jobs(new_jobs)
-
-    # ── Step 5: Summary & notification ───────────────────────────────────────
-    high   = sum(1 for j in new_jobs if priority_label(j["score"]) == "High")
-    medium = sum(1 for j in new_jobs if priority_label(j["score"]) == "Medium")
-    low    = sum(1 for j in new_jobs if priority_label(j["score"]) == "Low")
-
     elapsed = (datetime.now() - start_time).seconds
-    summary = {
-        "raw": len(raw_jobs), "qualifying": len(qualifying),
-        "new": len(new_jobs), "written": written,
-        "high": high, "medium": medium, "low": low,
-        "elapsed_s": elapsed,
-    }
-
-    top_jobs = sorted(new_jobs, key=lambda j: j["score"], reverse=True)[:5]
 
     logger.info("=" * 60)
     logger.info("SCRAPE COMPLETE — %s", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    logger.info("Raw: %d | Qualifying: %d | New: %d | Written: %d",
-                summary["raw"], summary["qualifying"], summary["new"], summary["written"])
-    logger.info("Priority — High: %d | Medium: %d | Low: %d", high, medium, low)
-    logger.info("Elapsed: %ds", elapsed)
-    if top_jobs:
-        logger.info("── Top picks ──")
-        for i, j in enumerate(top_jobs, 1):
-            logger.info("  %d. [%d] %s @ %s  %s",
-                        i, j["score"], j["title"], j["company"], j.get("url", ""))
+    logger.info("Total raw: %d | Written: %d | Elapsed: %ds",
+                total_raw, total_written, elapsed)
     logger.info("=" * 60)
 
-    notif_lines = [
-        f"New jobs: {written}   (High: {high} | Med: {medium} | Low: {low})",
-        f"Total scanned: {summary['raw']}   Run time: {elapsed}s",
-    ]
-    if top_jobs:
-        best = top_jobs[0]
-        notif_lines.append(f"Best: {best['title']} @ {best['company']} [{best['score']}/10]")
+    # Desktop notification
+    notify(
+        title=NOTIFICATION_TITLE,
+        message=f"New jobs: {total_written}  |  Scanned: {total_raw}  |  Time: {elapsed}s",
+        duration=NOTIFICATION_TIMEOUT,
+    )
 
-    notify(title=NOTIFICATION_TITLE, message="\n".join(notif_lines), duration=NOTIFICATION_TIMEOUT)
-    return summary
+    # Auto-open Excel to show results
+    if not no_open and total_written > 0:
+        _open_excel()
+
+    return {"raw": total_raw, "written": total_written, "elapsed_s": elapsed}
 
 
 if __name__ == "__main__":
@@ -165,7 +163,9 @@ if __name__ == "__main__":
     parser.add_argument("--platform", type=str, default=None,
                         help="Run only one platform: linkedin | wuzzuf | bayt | remote abroad")
     parser.add_argument("--quick", action="store_true",
-                        help="Skip LinkedIn (faster, avoids rate-limit bans). Recommended for daily runs.")
+                        help="Skip LinkedIn (recommended for daily use)")
+    parser.add_argument("--no-open", action="store_true",
+                        help="Do not auto-open Excel when done")
     args = parser.parse_args()
 
-    run(platform=args.platform, quick=args.quick)
+    run(platform=args.platform, quick=args.quick, no_open=args.no_open)

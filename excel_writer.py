@@ -45,12 +45,12 @@ CLR_APPLIED_BG  = "D9D9D9"   # grey — already applied
 
 COL_HEADERS = [
     "Date Found", "Date Posted", "Title", "Company",
-    "Source", "Work Type", "Location", "Match Score",
-    "Priority", "Key Skills", "URL", "Status",
-    "Query", "Notes",
+    "Source", "Work Type", "Location", "Experience",
+    "Salary", "Match Score", "Priority", "Key Skills",
+    "URL", "Status", "Query", "Notes",
 ]
 
-COL_WIDTHS = [13, 13, 38, 28, 16, 16, 22, 13, 10, 40, 55, 14, 28, 30]
+COL_WIDTHS = [13, 13, 38, 28, 16, 16, 22, 18, 16, 13, 10, 40, 55, 14, 28, 30]
 
 # ── Style helpers ──────────────────────────────────────────────────────────────
 
@@ -186,6 +186,8 @@ def append_jobs(jobs: list[dict]) -> int:
             job.get("source", ""),
             job.get("work_type", ""),
             job.get("location", ""),
+            job.get("experience", ""),
+            job.get("salary", ""),
             score,
             priority,
             job.get("key_requirements", ""),
@@ -200,12 +202,12 @@ def append_jobs(jobs: list[dict]) -> int:
         for col_idx, value in enumerate(row_values, start=1):
             cell = ws.cell(row=next_row, column=col_idx, value=value)
             cell.font      = Font(name="Arial", size=9)
-            cell.alignment = Alignment(vertical="top", wrap_text=(col_idx in {3, 10, 11, 14}))
+            cell.alignment = Alignment(vertical="top", wrap_text=(col_idx in {3, 12, 13, 16}))
             cell.border    = border
             if fill:
                 cell.fill = fill
             # Make URL clickable
-            if col_idx == 11 and url:
+            if col_idx == 13 and url:
                 cell.hyperlink = url
                 cell.font = Font(name="Arial", size=9, color="0563C1", underline="single")
 

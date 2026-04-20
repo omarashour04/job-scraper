@@ -245,6 +245,27 @@ SKILL_KEYWORDS_POSITIVE = {
     "autonomous":           1,
     "fintech":              1,
     "edtech":               1,
+
+    # ── Role title keywords — for card-level scraping (Wuzzuf/Bayt) ──────────
+    # These platforms return only title+company+location at card level with no
+    # full JD text, so role keywords must score from the title alone.
+    "data analyst":         2,
+    "data analysis":        2,
+    "data scientist":       2,
+    "data science":         2,
+    "data engineer":        2,
+    "machine learning":     2,
+    "ai engineer":          2,
+    "ai research":          2,
+    "nlp engineer":         2,
+    "research assistant":   2,
+    "bi analyst":           2,
+    "analytics engineer":   2,
+    "reporting analyst":    2,
+    "ml engineer":          2,
+    "llm engineer":         2,
+    "vision engineer":      2,
+    "python developer":     2,
 }
 
 SKILL_KEYWORDS_NEGATIVE = {
@@ -310,12 +331,13 @@ REMOTE_CORE_TITLE_KEYWORDS = [
 ]
 
 # ── Minimum match score to include in Excel ───────────────────────────────────
-MIN_SCORE = 3
+MIN_SCORE = 2
 
 # ── Scraping behaviour ────────────────────────────────────────────────────────
 REQUEST_DELAY_SEC     = 2.5
 PLAYWRIGHT_TIMEOUT    = 20000
 MAX_RESULTS_PER_QUERY = 15
+MAX_JOB_AGE_DAYS      = 30   # skip jobs older than this (0 = no filter)
 
 # ── Notification ─────────────────────────────────────────────────────────────
 NOTIFICATION_TITLE   = "Job Scraper — Run Complete"
